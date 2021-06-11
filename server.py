@@ -11,6 +11,9 @@ def index():
 
 @app.route('/checkout', methods=['POST'])         
 def checkout():
+
+    total_fruits = int(request.form["apple"]) + int(request.form["strawberry"]) + int(request.form["rasberry"])
+
     print(request.form)
     session["strawberry"] = request.form["strawberry"]
     session["rasberry"] = request.form["rasberry"]
@@ -18,7 +21,7 @@ def checkout():
     session["first_name"] = request.form["first_name"]
     session["last_name"] = request.form["last_name"]
     session["student_id"] = request.form["student_id"]
-    return render_template("checkout.html")
+    return render_template("checkout.html", total_fruits = total_fruits)
 
 @app.route('/fruits')         
 def fruits():
